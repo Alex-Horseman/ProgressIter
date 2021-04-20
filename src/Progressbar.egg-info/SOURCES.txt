@@ -1,0 +1,8 @@
+pyproject.toml
+setup.cfg
+setup.py
+src/Progressbar/__init__.py
+src/Progressbar.egg-info/PKG-INFO
+src/Progressbar.egg-info/SOURCES.txt
+src/Progressbar.egg-info/dependency_links.txt
+src/Progressbar.egg-info/top_level.txt
