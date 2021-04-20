@@ -1,4 +1,4 @@
-# ProgressIter <kbd>v0.3.2</kbd>
+# ProgressIter <kbd>v0.4.0</kbd>
 
 Discription
 -------------
@@ -19,6 +19,7 @@ Usage
         length=0,
         on=None,
         time_on=None,
+        bar_len=None
     )
     
 <kbd>iter</kbd> is the Iterator or the Iterable object you want to iterate in a for loop.
@@ -28,6 +29,8 @@ Usage
 <kbd>on</kbd> (Optional) If it is set to False, nothing will be print. The progressbar will act the same as the iterable object.
 
 <kbd>time_on</kbd> (Optional) If it is set to True, time of each step will be calculated and the average time, total time and rest time will be printed.
+
+<kbd>bar_len</kbd> (Optional) Length of the bar string. Default 100.
 
 ### Methods
 
@@ -42,6 +45,10 @@ Usage
     global_time_on(on:bool)
 
 <kbd>on</kbd> It set the default value of optional parameter *time_on* for all instantiation.
+
+    global_bar_len(length:int)
+
+<kbd>length</kbd> It set the default value of optional parameter *bar_len* for all instantiation.
 
 Example
 --------------

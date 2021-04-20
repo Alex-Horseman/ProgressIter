@@ -18,16 +18,20 @@ def time_str(sec):
 
 global_on = True
 global_time_on = False
+global_bar_len = 100
 
 
 class Progressbar:
-    def __init__(self, iter, length=0, on: bool = None, time_on:bool=None):
+    def __init__(self, iter, length=0, on: bool = None, time_on:bool=None, bar_len:int=None):
         if on == None:
             on = global_on
         if time_on == None:
             time_on = global_time_on
+        if bar_len == None:
+            bar_len = global_bar_len
         self.on = on
         self.time_on = time_on
+        self.bar_len = bar_len
         self.i = -1
         self.iter = iter
         if length > 0:
@@ -38,7 +42,7 @@ class Progressbar:
         self.message = ''
         if on:
             self.time = time.time()
-            self.str = '[' + ' ' * 100 + ']0%%(0/%d)' % self.len
+            self.str = '[' + ' ' * self.bar_len + ']0%%(0/%d)' % self.len
             print(self.str, end='', flush=True)
         else:
             self.str = ''
@@ -52,15 +56,16 @@ class Progressbar:
         try:
             next = self.iter__.__next__()
             if self.on:
-                percentage = 100.0 * self.i / self.len
-                sub_number = int((percentage % 1) * 10)
-                percentage = int(percentage)
-                if percentage == 100:
+                ratio = self.i / self.len
+                percentage = int(100 * ratio)
+                sub_number = int(((100*ratio) % 1) * 10)
+                star_len = int(ratio*self.bar_len)
+                if star_len == self.bar_len:
                     sub_number = ''
                 else:
                     sub_number = chr(48 + sub_number)
                 str_b = '\b' * len(self.str)
-                self.str = '[' + '#' * percentage + sub_number + ' ' * (99 - percentage) + ']'
+                self.str = '[' + '#' * star_len + sub_number + ' ' * (self.bar_len - star_len) + ']'
                 self.str += '%d%%(%d/%d)' % (percentage, self.i, self.len)
                 if self.time_on and self.i > 0:
                     time_end = time.time()
@@ -80,7 +85,7 @@ class Progressbar:
     def done(self):
         if self.on:
             str_b = '\b' * len(self.str)
-            self.str = '[' + '#' * 100 + ']'
+            self.str = '[' + '#' * self.bar_len + ']'
             self.str += '100%%(%d/%d)' % (self.len, self.len)
             if self.time_on and self.i > 0:
                 time_end = time.time()
@@ -104,3 +109,8 @@ class Progressbar:
     def global_time_on(cls, on: bool):
         global global_time_on
         global_time_on = on
+
+    @classmethod
+    def global_bar_len(cls, length: int):
+        global global_bar_len
+        global_bar_len = length

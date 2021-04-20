@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: ProgressIter
-Version: 0.3.2
+Version: 0.4.0
 Summary: A simple wrapper of any Iterator or Iterable
-Home-page: https://github.com/
+Home-page: https://github.com/Alex-Horseman/ProgressIter
 Author: Bojack
 Author-email: mayan2017@buaa.edu.cn
 License: UNKNOWN
-Description: # ProgressIter <kbd>v0.3.2</kbd>
+Description: # ProgressIter <kbd>v0.4.0</kbd>
         
         Discription
         -------------
@@ -27,6 +27,7 @@ Description: # ProgressIter <kbd>v0.3.2</kbd>
                 length=0,
                 on=None,
                 time_on=None,
+                bar_len=None
             )
             
         <kbd>iter</kbd> is the Iterator or the Iterable object you want to iterate in a for loop.
@@ -36,6 +37,8 @@ Description: # ProgressIter <kbd>v0.3.2</kbd>
         <kbd>on</kbd> (Optional) If it is set to False, nothing will be print. The progressbar will act the same as the iterable object.
         
         <kbd>time_on</kbd> (Optional) If it is set to True, time of each step will be calculated and the average time, total time and rest time will be printed.
+        
+        <kbd>bar_len</kbd> (Optional) Length of the bar string. Default 100.
         
         ### Methods
         
@@ -50,6 +53,10 @@ Description: # ProgressIter <kbd>v0.3.2</kbd>
             global_time_on(on:bool)
         
         <kbd>on</kbd> It set the default value of optional parameter *time_on* for all instantiation.
+        
+            global_bar_len(length:int)
+        
+        <kbd>length</kbd> It set the default value of optional parameter *bar_len* for all instantiation.
         
         Example
         --------------
